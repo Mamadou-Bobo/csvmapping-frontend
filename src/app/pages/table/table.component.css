@@ -147,6 +147,23 @@
     margin-top: 5px;
 }
 
+.status{
+    /* display: flex;
+    justify-content: center; */
+    margin-top: 10px;
+    height: auto !important;
+    border-radius: 15px; 
+    /* background-color: #eebebe; */
+    text-align: center;
+
+}
+
+.status h1{
+    text-align: center;
+    font-size: 13px;
+    /* color: #cc0001; */
+}
+
 select {
     -webkit-appearance:none;
     -moz-appearance:none;

@@ -62,9 +62,13 @@
                 <td style="text-align: center;">
                   {{user.roles !== undefined ? user.roles[0].name : ""}}
                 </td>
-                <td style="text-align: center;">
-                  {{user.status}}
-                </td>
+                <!-- [ngStyle]="{'background-color': '#c7eed6'}
+                [ngStyle]="{'color': '#007200'}" -->
+                <div class="status" [ngStyle]="{'background-color': user.status === 'Actif' ? '#c7eed6' : '#eebebe'}">
+                  <h1 [ngStyle]="{'color': user.status === 'Actif' ? '#007200' : '#cc0001'}">
+                    {{user.status}}
+                  </h1>
+                </div>
                 <td>
                   <i (click)="show(deleteTemplate, user.id, user.username, false)" (click)="setIsClicked()" style="color: #D72323; cursor: pointer; font-size: 20px;" class="fa fa-trash-o" aria-hidden="true"></i>
                 </td>
