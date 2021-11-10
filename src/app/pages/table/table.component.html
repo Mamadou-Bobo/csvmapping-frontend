@@ -62,8 +62,6 @@
                 <td style="text-align: center;">
                   {{user.roles !== undefined ? user.roles[0].name : ""}}
                 </td>
-                <!-- [ngStyle]="{'background-color': '#c7eed6'}
-                [ngStyle]="{'color': '#007200'}" -->
                 <div class="status" [ngStyle]="{'background-color': user.status === 'Actif' ? '#c7eed6' : '#eebebe'}">
                   <h1 [ngStyle]="{'color': user.status === 'Actif' ? '#007200' : '#cc0001'}">
                     {{user.status}}
@@ -113,7 +111,12 @@
 
 <ng-template #template>
   <div class="modal-header">
-      <h4 class="modal-title pull-left">{{typeButton === 'SAVE' ? "Création d'un utilisateur" : 'UPDATE' ? "Modification d'un utilisateur" : ''}}</h4>  
+      <div class="title">
+        <h4 class="modal-title pull-left">{{typeButton === 'SAVE' ? "Création d'un utilisateur" : 'UPDATE' ? "Modification d'un utilisateur" : ''}}</h4>  
+      </div>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
   </div>
   <div [ngStyle]="{'display': alertMessage.length > 1 ?  'block' : 'none'}" style="background-color: red; margin-left: 20px; margin-right: 20px;" class="alert alert-danger alert-dismissible fade show" role="alert">
     {{alertMessage}}
