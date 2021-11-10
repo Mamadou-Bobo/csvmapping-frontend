@@ -1,0 +1,30 @@
+<div class="login">
+  <div class="logo">
+    <img src="../../assets/img/CsvMapping.png" alt="CsvMapping">
+  </div>
+
+  <div [ngStyle]="{'display': alertMessage.length > 0 ? 'block' : 'none'}" class="alert">
+    <alert type="danger">
+      <span>{{ alertMessage }}</span>
+    </alert>
+  </div>  
+
+  <div class="main">
+    <div class="content">
+      <h1>Connexion</h1>
+      <form [formGroup]="userForm">
+        <div class="form-content">
+          <label for="username">Nom d'utilisateur</label>
+          <input type="text" formControlName="userName">
+          <label for="password">Mot de passe</label>
+          <input type="password" formControlName="userPassword">
+          <button type="button" (click)="onSubmit()">Se connecter</button>
+        </div>
+      </form>
+      <div class="bottom">
+        <hr>
+        <a routerLink="/restart-password">Mot de passe oublié ?</a>
+      </div>
+    </div>
+  </div>
+</div>

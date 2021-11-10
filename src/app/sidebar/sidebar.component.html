@@ -1,0 +1,15 @@
+<div class="sidebar-wrapper">
+  <div class="logo" style="display: flex; justify-content: center;">
+    <a href="#">
+      <img src="../../assets/img/CsvMapping_dark.png" alt="CsvMapping">
+    </a>
+  </div>
+    <ul class="nav">
+        <li *ngFor="let menuItem of menuItems; index as i" routerLinkActive="active" class="{{menuItem.class}}">
+          <a *ngIf="menuItem.userRole.includes(role)" [routerLink]="[menuItem.path]">
+            <i class="{{menuItem.icon}}"></i>
+            <p>{{menuItem.title}}</p>
+        </a>
+        </li>
+    </ul>
+</div>

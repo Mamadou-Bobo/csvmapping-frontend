@@ -1,0 +1,165 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        
+        <div class="button">
+          <!-- <button style="float: left;">Filtrer</button> -->
+          <div class="right-button">
+            <button [ngStyle]="{'display': allId !== undefined && allId.length > 0 ? 'block' : 'none'}" type="button" (click)="show(deleteTemplate, currentId, '', true)">Supprimer {{ deleteUsers }}</button>
+            <button type="button" (click)="openModal(template)">Ajouter</button>
+          </div>
+        </div>
+        <!-- (click)="openModal(template)" -->
+        <!-- <button [ngStyle]="{'display': deleteUsers !== undefined && deleteUsers.length > 0 ? 'block' : 'none'}" type="button" (click)="show(alertTemplate)">Supprimer {{ deleteUsers }}</button> -->
+      </div>
+      <div class="card-body">
+        <div class="table-responsive" style="overflow: hidden;">
+          <table class="table">
+            <thead class=" text-primary">
+              <th [ngStyle]="{'display': userList !== undefined && userList.length > 0 ? 'block' : 'none'}">
+                <input type="checkbox" [(ngModel)]="masterSelected" (change)="checkUncheckAll()">
+              </th>
+              <th style="text-align: center;">
+                Prénom
+              </th>
+              <th style="text-align: center;">
+                Nom
+              </th>
+              <th style="text-align: center;">
+                Nom d'utilisateur
+              </th>
+              <th style="text-align: center;">
+                Email
+              </th>
+              <th style="text-align: center;">
+                Rôle
+              </th>
+              <th style="text-align: center;">
+                Statut
+              </th>
+            </thead>
+            <tbody>
+              <div class="not-found">
+                <tr [ngStyle]="{'display': notFoundMessage !== undefined && notFoundMessage.length > 0 ? 'block' : 'none'}"><h1>Aucun Résultat</h1></tr>
+              </div>
+              <tr *ngFor="let user of userList; index as i">
+                <td>
+                  <input (click)="setId(user.id)" [(ngModel)]="user.isSelected" type="checkbox" (change)="isAllSelected()" style="margin-left: 5px;">
+                </td>
+                <td style="text-align: center;">
+                  {{user.firstName}}
+                </td>
+                <td style="text-align: center;">
+                  {{user.lastName}}
+                </td>
+                <td style="text-align: center;">
+                  {{user.username}}
+                </td>
+                <td style="text-align: center;">
+                  {{user.email}}
+                </td>
+                <td style="text-align: center;">
+                  {{user.roles !== undefined ? user.roles[0].name : ""}}
+                </td>
+                <td style="text-align: center;">
+                  {{user.status}}
+                </td>
+                <td>
+                  <i (click)="show(deleteTemplate, user.id, user.username, false)" (click)="setIsClicked()" style="color: #D72323; cursor: pointer; font-size: 20px;" class="fa fa-trash-o" aria-hidden="true"></i>
+                </td>
+                <td>
+                  <i (click)="openEditModal(template,user.id)" style="color: #2199E7; cursor: pointer; font-size: 20px;" class="fa fa-pencil" aria-hidden="true"></i>
+                </td>
+            </tr>
+            </tbody>
+          </table>       
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button> -->
+
+<ng-template #deleteTemplate>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">{{allId !== undefined && allId.length > 1 && currentUserName.length === 0 ? 'Suppression des utilisateurs' : 'Suppression de '}} <span style="font-weight: bold; font-size: 22px;">{{ currentUserName.length > 1 ? currentUserName : ''}}</span></h4>
+          <!-- <h4 class="modal-title pull-left">Suppression de<span style="font-weight: bold; font-size: 22px;"> {{ currentUserName }}</span></h4> -->
+          
+          <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{ allId !== undefined && allId.length > 1 && currentUserName === '' ? 'Voulez-vous supprimer ces utilisateurs ?' : 'Voulez-vous supprimer cet utilisateur ?' }}
+        </div>
+    
+        <div class="confirm-button" style="display: flex; justify-content: flex-end; flex-direction: row;">
+          <button type="button" (click)="modalRef?.hide()" style="margin-right: 10px;">
+            annuler
+          </button>
+          <button type="button" (click)="delete(userId)">
+            Supprimer
+          </button>
+        </div>
+</ng-template>
+
+<ng-template #template>
+  <div class="modal-header">
+      <h4 class="modal-title pull-left">{{typeButton === 'SAVE' ? "Création d'un utilisateur" : 'UPDATE' ? "Modification d'un utilisateur" : ''}}</h4>  
+  </div>
+  <div [ngStyle]="{'display': alertMessage.length > 1 ?  'block' : 'none'}" style="background-color: red; margin-left: 20px; margin-right: 20px;" class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{alertMessage}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" (click)="hide()">&times;</span>
+      </button>
+    </div>
+    <form [formGroup]="userForm">
+    <div class="modal-form">
+          <div class="left">
+              <div class="form-group firstName">
+                  <label>Nom</label>
+                  <input type="text" formControlName="lastName" class="form-control" id="firstName" name="firstName">
+              </div>
+              <div class="form-group email">
+                  <label>Email</label>
+                  <input (change)="getEmailValue($event)" [ngStyle]="{'border-color': emailError.length > 0 ? 'red' : '#ccc'}" style="border-color: red;" type="text" formControlName="email" class="form-control" id="firstName" name="firstName">
+                  <span *ngIf="emailError.length > 0">{{emailError}}</span>
+              </div>
+              <label for="">Type de compte</label>
+              <form [formGroup]="accountTypeForm">
+                  <div class="select accountType">
+                      <select name="format" id="format" formControlName="value">
+                          <option *ngFor="let mode of modes" [ngValue]="mode.name">{{mode.name}}</option>
+                      </select>
+                  </div>
+              </form>                            
+          </div>
+          <div class="right">
+              <div class="form-group firstName">
+                  <label>Prénom</label>
+                  <input type="text" formControlName="firstName" class="form-control" id="firstName" name="firstName">
+              </div>
+              <div class="form-group userName">
+                  <label>Nom d'utilisateur</label>
+                  <input (change)="getUserNameValue($event)" [ngStyle]="{'border-color': userNameError.length > 0 ? 'red' : '#ccc'}" type="text" formControlName="username" class="form-control" id="firstName" name="firstName">
+                  <span *ngIf="userNameError.length > 0">{{userNameError}}</span>
+                </div>
+              <label for="">Statut</label>
+              <form [formGroup]="statusForm">
+                  <div class="select status">
+                      <select name="format" id="format" formControlName="value">
+                          <option *ngFor="let status of allStatus" [ngValue]="status.name">{{status.name}}</option>
+                      </select>
+                  </div>
+              </form>   
+          </div>
+      </div>
+  </form>
+  <div class="bottom">
+      <button (click)="onSubmit()">{{typeButton === 'SAVE' ? 'Enregistrer' : 'UPDATE' ? 'Modifier' : ''}}</button>
+  </div>
+</ng-template>

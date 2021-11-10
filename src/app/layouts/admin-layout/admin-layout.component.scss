@@ -1,0 +1,132 @@
+.content{
+    display: flex;
+    flex-direction: column;
+}
+
+.content button{
+    float: right;
+    margin-bottom: 10px;
+    float: right; 
+    background-color: #00609F;
+    color: #fff; 
+    border: none; 
+    width: 120px; 
+    height: 40px; 
+    outline: none;
+    transition: .3s;
+    border-radius: 5px;
+}
+
+.content button:hover{
+    background-color: #025891;
+}
+
+// .modal-header,
+// .bottom{
+//     display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+// }
+
+// .bottom{
+//     margin: 100px 0 30px 0;
+// }
+
+// .button button:last-child{
+//     background-color: #D72323;
+//     margin-right: 10px;
+//     border-radius: 5px;
+// }
+
+// .alert-btn button:last-child{
+//     background-color: #aeaeae;
+// }
+
+// input{
+//     width: 300px;
+// }
+
+// .dropdown-menu{
+//     background-color: #2C3E50;
+//     color: #fff;
+// }
+
+// .btn{
+//     background-color: #2C3E50;
+//     cursor: pointer;
+// }
+
+// .modal-form{
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-between;
+//     margin: 30px 50px 0 50px;
+// }
+
+// .bottom button{
+//     border: none;
+//     border-radius: 5px;
+//     padding: 10px;
+//     cursor: pointer;
+//     outline: none;
+//     background-color: #2C3E50;
+//     color: #fff;
+// }
+
+// .form-group.email,
+// .form-group.userName{
+//     margin-top: 10px;
+// }
+
+// .select.accountType,
+// .select.status{
+//     margin-top: 5px;
+// }
+
+
+// select {
+//     -webkit-appearance:none;
+//     -moz-appearance:none;
+//     -ms-appearance:none;
+//     appearance:none;
+//     outline:0;
+//     box-shadow:none;
+//     border:0!important;
+//     background: #2C3E50;
+//     background-image: none;
+//     width: 100%;
+//     flex: 1;
+//     padding: 0 .5em;
+//     color:#fff;
+//     cursor:pointer;
+//     font-size: 1em;
+//     font-family: 'Open Sans', sans-serif;
+//  }
+//  select::-ms-expand {
+//     display: none;
+//  }
+//  .select {
+//     position: relative;
+//     display: flex;
+//     width: 100%;
+//     height: 3em;
+//     line-height: 3;
+//     background: #2C3E50;
+//     overflow: hidden;
+//     border-radius: .25em;
+//  }
+//  .select::after {
+//     content: '\25BC';
+//     position: absolute;
+//     top: 0;
+//     right: 0;
+//     padding: 0 1em;
+//     background: #2C3E50;
+//     cursor:pointer;
+//     pointer-events:none;
+//     color: #fff;
+//     transition:.25s all ease;
+//  }
+//  .select:hover::after {
+//     color: #23b499;
+//  }
