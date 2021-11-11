@@ -101,7 +101,8 @@ export class TableComponent implements OnInit, OnDestroy{
   
   constructor(private userService: UserService,
               private modalService: BsModalService,
-              private formBuilder: FormBuilder) {}
+              private formBuilder: FormBuilder,
+              private shareDataService: ShareDataService) {}
 
   ngOnDestroy(): void {
     this.usersListSubscription.unsubscribe();
@@ -158,6 +159,10 @@ export class TableComponent implements OnInit, OnDestroy{
       this.allId.forEach(element => {
         this.userService.deleteUser(element).subscribe(() => {
           this.getUserList();
+          this.shareDataService.alertMessage = 'Utilisateurs supprimé avec succès';
+          this.shareDataService.emitAlertMessage();
+          this.shareDataService.isClicked = false;
+          this.shareDataService.emitIsClicked();
           this.modalService.hide();
         },
         error => console.log(error)
@@ -166,6 +171,10 @@ export class TableComponent implements OnInit, OnDestroy{
     } else {
       this.userService.deleteUser(id).subscribe(() => {
         this.getUserList();
+        this.shareDataService.alertMessage = 'Utilisateur supprimé avec succès';
+        this.shareDataService.emitAlertMessage();
+        this.shareDataService.isClicked = false;
+          this.shareDataService.emitIsClicked();
         this.modalService.hide();
       },
         error => console.log(error)
@@ -222,13 +231,6 @@ export class TableComponent implements OnInit, OnDestroy{
       this.deleteUsers = '';
     } 
   }
-
-  // getUserName() {
-  //   if(this.allId !== undefined && this.allId.length === 1) {
-  //     this.isClicked = false;
-  //     this.currentUserName = this.userList.filter(user => user.id === this.allId[0])[0].username;
-  //   }
-  // }
 
   setIsClicked() {
     this.isClicked = true;
@@ -349,6 +351,10 @@ export class TableComponent implements OnInit, OnDestroy{
           this.userService.registerUser(this.user).subscribe(() => {
             this.userService.emitUserList();
             this.userService.getUsers();
+            this.shareDataService.alertMessage = 'Utilisateur ajouté avec succès';
+            this.shareDataService.emitAlertMessage();
+            this.shareDataService.isClicked = false;
+            this.shareDataService.emitIsClicked();
             this.removeCheck();
             this.close();
           },
@@ -360,6 +366,10 @@ export class TableComponent implements OnInit, OnDestroy{
           this.userService.updateUser(this.user,userId).subscribe(() => {
             this.userService.emitUserList();
             this.userService.getUsers();
+            this.shareDataService.alertMessage = 'Informations modifiées avec succès';
+            this.shareDataService.emitAlertMessage();
+            this.shareDataService.isClicked = false;
+            this.shareDataService.emitIsClicked();
             this.removeCheck();
             this.close();
           },

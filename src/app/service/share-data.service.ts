@@ -11,4 +11,17 @@ import { UserService } from './user.service';
 })
 export class ShareDataService {
 
+  alertMessage: string = '';
+  isClicked: boolean = false;
+
+  alertMessageSubject = new Subject<string>();
+  isClickedSubject = new Subject<boolean>();
+
+  emitAlertMessage() {
+    this.alertMessageSubject.next(this.alertMessage);
+  }
+
+  emitIsClicked() {
+    this.isClickedSubject.next(this.isClicked);
+  }
 }

@@ -3,9 +3,17 @@
         <sidebar-cmp></sidebar-cmp>
     </div>
 
+    
     <div class="main-panel">
         <navbar-cmp></navbar-cmp>        
         <div class="content">
+            <div class="alert" [ngStyle]="{'display': isClicked ? 'none' : 'flex'}">
+                <div class="alert-message">
+                    <div class="check-icon"><div class="icon"><i class="fa fa-check" aria-hidden="true"></i></div></div>
+                    <div class="message"><h1>{{message}}</h1></div>
+                    <div class="close-icon" (click)="close()"><i class="fa fa-times" aria-hidden="true"></i></div>
+                </div>
+            </div>
             <router-outlet></router-outlet>
         </div>
         <footer-cmp></footer-cmp>

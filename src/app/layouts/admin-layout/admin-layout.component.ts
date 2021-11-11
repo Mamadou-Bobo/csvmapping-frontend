@@ -16,10 +16,38 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./admin-layout.component.scss']
 })
 export class AdminLayoutComponent implements OnInit {
-  constructor(public router: Router) {}
+  constructor(public router: Router,
+              private shareDataService: ShareDataService) {
+
+              }
+
+  isClicked: boolean = true;
+
+  message: string = '';
 
   ngOnInit() {
+    this.shareDataService.isClickedSubject.subscribe(
+      data => {
+        this.isClicked = data;
+      },
+      error => console.log(error)
+    );
 
-   }
+    this.shareDataService.alertMessageSubject.subscribe(
+      data => {
+        this.message = data;
+        this.isClicked = false;
+        setTimeout(() => {
+          this.shareDataService.isClicked = true;
+          this.shareDataService.emitIsClicked();
+        }, 4000);
+      },
+      error => console.log(error)
+    );
+  }
+  close() {
+    this.isClicked = true;
+    this.message = '';
+  }
 
 }
