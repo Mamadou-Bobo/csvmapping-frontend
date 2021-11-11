@@ -6,7 +6,6 @@ import { TableComponent } from '../../pages/table/table.component';
 import { TypographyComponent } from '../../pages/typography/typography.component';
 import { IconsComponent } from '../../pages/icons/icons.component';
 import { NotificationsComponent } from '../../pages/notifications/notifications.component';
-import { UpgradeComponent } from '../../pages/upgrade/upgrade.component';
 import { AuthGuard } from 'app/auth/auth.guard';
 import { role } from 'app/common/global-constant';
 
@@ -24,6 +23,5 @@ export const AdminLayoutRoutes: Routes = [
     },
     { path: 'typography',     component: TypographyComponent },
     { path: 'icons',          component: IconsComponent },
-    { path: 'notifications',  component: NotificationsComponent },
-    { path: 'upgrade',        component: UpgradeComponent }
+    { path: 'notifications',  component: NotificationsComponent }
 ];

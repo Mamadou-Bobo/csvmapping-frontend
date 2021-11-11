@@ -223,6 +223,7 @@ select {
     background: #2C3E50;
     cursor:pointer;
     pointer-events:none;
+    height: 100%;
     color: #fff;
     transition:.25s all ease;
  }

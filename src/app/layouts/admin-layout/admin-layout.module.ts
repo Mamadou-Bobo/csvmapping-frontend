@@ -11,7 +11,6 @@ import { TableComponent }           from '../../pages/table/table.component';
 import { TypographyComponent }      from '../../pages/typography/typography.component';
 import { IconsComponent }           from '../../pages/icons/icons.component';
 import { NotificationsComponent }   from '../../pages/notifications/notifications.component';
-import { UpgradeComponent }         from '../../pages/upgrade/upgrade.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListUserComponent } from 'app/user/list-user/list-user.component';
@@ -31,7 +30,6 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
     DashboardComponent,
     UserComponent,
     TableComponent,
-    UpgradeComponent,
     TypographyComponent,
     IconsComponent,
     NotificationsComponent,

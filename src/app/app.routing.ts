@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { role } from './common/global-constant';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
@@ -29,16 +30,18 @@ export const AppRoutes: Routes = [
     path: 'forbidden',
     component: ForbiddenComponent
   },
-  // {
-  //   path: '',
-  //   redirectTo: 'dashboard',
-  //   pathMatch: 'full',
-  // },
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  },
   {
     path: '',
     component: AdminLayoutComponent,
     canActivate: [AuthGuard],
-    data:{roles:[{id:1,name:'SUPER_ADMINISTRATOR'},{id:2,name:'ADMINISTRATOR'}]},
+    data:{roles:[{id:1,name:role.SUPER_ADMINISTRATOR.value},
+                 {id:2,name:role.ADMINISTRATOR.value},
+                 {id:3,name:role.VALIDATOR.value}]},
     children: [
       {
         path: '',
