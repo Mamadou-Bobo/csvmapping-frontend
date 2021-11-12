@@ -12,6 +12,14 @@ export class UserAuthService {
     localStorage.setItem("roles", JSON.stringify(roles));
   }
 
+  public setEmail(email: string): void {
+    localStorage.setItem("email", email);
+  }
+
+  public getEmail(): string {
+    return localStorage.getItem("email");
+  }
+
   public getRoles(): [] {
     return JSON.parse(localStorage.getItem("roles"));
   }

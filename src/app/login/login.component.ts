@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GlobalConstant, role } from 'app/common/global-constant';
 import { FullUser } from 'app/model/full-user';
+import { ShareDataService } from 'app/service/share-data.service';
 import { UserAuthService } from 'app/service/user-auth.service';
 import { UserService } from 'app/service/user.service';
 
@@ -27,7 +28,8 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
               private userAuthService: UserAuthService,
-              private router: Router) { }
+              private router: Router,
+              private shareDataService: ShareDataService) { }
 
   ngOnInit(): void {
   }
@@ -39,6 +41,7 @@ export class LoginComponent implements OnInit {
       this.userService.login(this.user).subscribe((data: any) => {  
         this.userAuthService.setToken(data.jwtToken);
         this.userAuthService.setRoles(data.user.roles);
+        this.userAuthService.setEmail(data.user.email);
   
         const userId = data.user.id;
   

@@ -42,6 +42,8 @@ export class UpdatePasswordComponent implements OnInit {
   private sendEmail(): void {
     this.user = this.userForm.value;
 
+    console.log(this.user);
+
     if(this.userForm.valid) {
       this.alertMessage = "";
       this.isClicked = true;

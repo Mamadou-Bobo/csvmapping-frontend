@@ -1,0 +1,11 @@
+.navbar-nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-email h4{
+    margin-bottom: 0;
+    font-size: 14px;
+    color: #090807;
+}
