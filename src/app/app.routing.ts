@@ -23,7 +23,7 @@ export const AppRoutes: Routes = [
     component: ChangePasswordComponent
   },
   {
-    path: 'reset-default-password/:id',
+    path: 'reset-default-password',
     component: ResetDefaultPasswordComponent
   },
   {

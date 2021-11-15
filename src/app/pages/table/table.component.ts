@@ -62,7 +62,7 @@ export class TableComponent implements OnInit, OnDestroy{
 
   allId: any;
 
-  isClicked:boolean = true;
+  isClicked:boolean = false;
   typeButton: string = "";
 
   isCheckAll: boolean = false;
@@ -155,6 +155,7 @@ export class TableComponent implements OnInit, OnDestroy{
   }
 
   delete(id: number) {
+    this.isClicked = false;
     if(this.isMultipleDelete) {
       this.allId.forEach(element => {
         this.userService.deleteUser(element).subscribe(() => {
@@ -231,16 +232,6 @@ export class TableComponent implements OnInit, OnDestroy{
       this.deleteUsers = '';
     } 
   }
-
-  setIsClicked() {
-    this.isClicked = true;
-  }
-
-  setUserName(username: string) {
-    if(this.isClicked) {
-      this.currentUserName = username;
-    }
-  }
   
   onModeChanged(value: any) {
     this.mode = value;
@@ -308,6 +299,7 @@ export class TableComponent implements OnInit, OnDestroy{
   }
 
   close() {
+    this.isClicked = false;
     if(this.userNameError !== undefined) {
       if(this.userNameError.length > 0) {
         this.allUsersSubscription.unsubscribe();
@@ -348,6 +340,7 @@ export class TableComponent implements OnInit, OnDestroy{
       });
       if(this.emailError === '' && this.userNameError === '') {
         if(this.typeButton === buttonType.SAVE) {
+          this.isClicked = true;
           this.userService.registerUser(this.user).subscribe(() => {
             this.userService.emitUserList();
             this.userService.getUsers();
@@ -359,10 +352,12 @@ export class TableComponent implements OnInit, OnDestroy{
             this.close();
           },
             error => {
+              this.isClicked = false;
               this.alertMessage = error;
             }
           );  
         } else if (this.typeButton === buttonType.UPDATE) {
+          this.isClicked = false;
           this.userService.updateUser(this.user,userId).subscribe(() => {
             this.userService.emitUserList();
             this.userService.getUsers();

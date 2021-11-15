@@ -4,14 +4,12 @@
       <div class="card-header">
         
         <div class="button">
-          <!-- <button style="float: left;">Filtrer</button> -->
           <div class="right-button">
             <button [ngStyle]="{'display': allId !== undefined && allId.length > 0 ? 'block' : 'none'}" type="button" (click)="show(deleteTemplate, currentId, '', true)">Supprimer {{ deleteUsers }}</button>
             <button type="button" (click)="openModal(template)">Ajouter</button>
           </div>
         </div>
-        <!-- (click)="openModal(template)" -->
-        <!-- <button [ngStyle]="{'display': deleteUsers !== undefined && deleteUsers.length > 0 ? 'block' : 'none'}" type="button" (click)="show(alertTemplate)">Supprimer {{ deleteUsers }}</button> -->
+        
       </div>
       <div class="card-body">
         <div class="table-responsive" style="overflow: hidden;">
@@ -82,10 +80,6 @@
   </div>
 </div>
 
-<!-- <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
-          <span aria-hidden="true" class="visually-hidden">&times;</span>
-      </button> -->
-
 <ng-template #deleteTemplate>
         <div class="modal-header">
           <h4 class="modal-title pull-left">{{allId !== undefined && allId.length > 1 && currentUserName.length === 0 ? 'Suppression des utilisateurs' : 'Suppression de '}} <span style="font-weight: bold; font-size: 22px;">{{ currentUserName.length > 1 ? currentUserName : ''}}</span></h4>
@@ -118,6 +112,7 @@
         <span aria-hidden="true" class="visually-hidden">&times;</span>
       </button>
   </div>
+  <app-loading *ngIf="isClicked"></app-loading>
   <div [ngStyle]="{'display': alertMessage.length > 1 ?  'block' : 'none'}" style="background-color: red; margin-left: 20px; margin-right: 20px;" class="alert alert-danger alert-dismissible fade show" role="alert">
     {{alertMessage}}
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">

@@ -20,6 +20,14 @@ export class UserAuthService {
     return localStorage.getItem("email");
   }
 
+  public setUsername(username: string): void {
+    localStorage.setItem("username", username);
+  }
+
+  public getUsername(): string {
+    return localStorage.getItem("username");
+  }
+
   public getRoles(): [] {
     return JSON.parse(localStorage.getItem("roles"));
   }

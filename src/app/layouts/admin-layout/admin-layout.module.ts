@@ -16,6 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListUserComponent } from 'app/user/list-user/list-user.component';
 
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { LoadingComponent } from 'app/loading/loading.component';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
     TypographyComponent,
     IconsComponent,
     NotificationsComponent,
-    ListUserComponent
+    ListUserComponent,
+    LoadingComponent
   ]
 })
 

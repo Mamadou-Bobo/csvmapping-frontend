@@ -29,8 +29,8 @@ import { UpdatePasswordComponent } from './user/update-password/update-password.
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ChangePasswordComponent } from './user/change-password/change-password.component';
-import { LoadingComponent } from './loading/loading.component';
 import { ResetDefaultPasswordComponent } from './user/reset-default-password/reset-default-password.component';
+import { CubeLoadingComponent } from "./cube-loading/cube-loading.component";
 
 @NgModule({
   declarations: [
@@ -41,9 +41,9 @@ import { ResetDefaultPasswordComponent } from './user/reset-default-password/res
     DeleteModalComponent,
     UpdatePasswordComponent,
     ChangePasswordComponent,
-    LoadingComponent,
-    ResetDefaultPasswordComponent
-  ],
+    ResetDefaultPasswordComponent,
+    CubeLoadingComponent    
+],
   imports: [
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes,{

@@ -124,7 +124,7 @@ export class UserService {
     return this.httpClient.get<boolean>(this.baseUrl + "/users/user/check-first-connexion/" + id + "/" + isFirstConnexion, {headers: this.requestHeader});
   }
 
-  public updateDefaultPassword(user: FullUser, id: number): Observable<Object> {
-    return this.httpClient.post(this.baseUrl + "/users/user/reset-default-password/" + id, user, {headers: this.requestHeader, responseType: 'text'});
+  public updateDefaultPassword(user: FullUser): Observable<Object> {
+    return this.httpClient.post(this.baseUrl + "/users/user/reset-default-password", user, {headers: this.requestHeader, responseType: 'text'});
   }
 }

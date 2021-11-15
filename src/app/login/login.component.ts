@@ -38,21 +38,19 @@ export class LoginComponent implements OnInit {
     this.user = this.userForm.value;
 
     if(this.userForm.valid) {
-      this.userService.login(this.user).subscribe((data: any) => {  
-        this.userAuthService.setToken(data.jwtToken);
-        this.userAuthService.setRoles(data.user.roles);
-        this.userAuthService.setEmail(data.user.email);
-  
-        const userId = data.user.id;
-  
+      this.userService.login(this.user).subscribe((data: any) => {      
         const isFirstConnexion = true;
   
         const userRole = data.user.roles[0].name;
   
-        this.userService.checkIfPasswordReset(data.user.id,isFirstConnexion).subscribe(data => {
-          if(data) {
-            this.router.navigate(['reset-default-password', userId]);
+        this.userService.checkIfPasswordReset(data.user.id,isFirstConnexion).subscribe(value => {
+          if(value) {
+            this.userAuthService.setUsername(data.user.username);
+            this.router.navigate(['reset-default-password']);
           } else {
+            this.userAuthService.setToken(data.jwtToken);
+            this.userAuthService.setRoles(data.user.roles);
+            this.userAuthService.setEmail(data.user.email);
             if(userRole === role.SUPER_ADMINISTRATOR.value) {
               this.router.navigate(['users']);
             } else if(userRole === role.ADMINISTRATOR.value) {

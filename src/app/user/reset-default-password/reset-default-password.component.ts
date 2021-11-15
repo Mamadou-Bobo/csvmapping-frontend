@@ -27,7 +27,6 @@ export class ResetDefaultPasswordComponent implements OnInit {
   subscription: Subscription;
 
   userForm = this.formBuilder.group({
-    userName: ['', Validators.required],
     newPassword: ['', Validators.required],
     confirmNewPassword: ['', Validators.required]
   });
@@ -35,18 +34,18 @@ export class ResetDefaultPasswordComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) { }
+              private userAuthService: UserAuthService) { }
 
   ngOnInit(): void {
   }
 
-  private login(): void {
+  private resetPassword(): void {
     this.user = this.userForm.value;
 
-    const userId = this.activatedRoute.snapshot.params['id'];
+    this.user.username = this.userAuthService.getUsername();
     
     if(this.userForm.valid) {
-      this.userService.updateDefaultPassword(this.user,userId).subscribe((data: any) => {
+      this.userService.updateDefaultPassword(this.user).subscribe((data: any) => {
         let x = 6;
       
         this.subscription = interval(1000).subscribe(
@@ -73,7 +72,7 @@ export class ResetDefaultPasswordComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.login();
+    this.resetPassword();
   }
 
 }

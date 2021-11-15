@@ -19,7 +19,6 @@ export class UpdatePasswordComponent implements OnInit {
   constant = new GlobalConstant();
 
   userForm = this.formBuilder.group({
-    userName: ['', Validators.required],
     email: ['', Validators.required]
   });
 
@@ -40,10 +39,8 @@ export class UpdatePasswordComponent implements OnInit {
   }
 
   private sendEmail(): void {
+    
     this.user = this.userForm.value;
-
-    console.log(this.user);
-
     if(this.userForm.valid) {
       this.alertMessage = "";
       this.isClicked = true;
@@ -60,7 +57,7 @@ export class UpdatePasswordComponent implements OnInit {
       }
       );
     } else {
-      this.alertMessage = "Veuillez renseigner tous les champs.";
+      this.alertMessage = "Veuillez renseigner votre adresse email.";
     }
   }
 
