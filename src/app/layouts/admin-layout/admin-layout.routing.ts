@@ -8,6 +8,7 @@ import { IconsComponent } from '../../pages/icons/icons.component';
 import { NotificationsComponent } from '../../pages/notifications/notifications.component';
 import { AuthGuard } from 'app/auth/auth.guard';
 import { role } from 'app/common/global-constant';
+import { FileComponent } from 'app/pages/file/file.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -17,7 +18,7 @@ export const AdminLayoutRoutes: Routes = [
       canActivate: [AuthGuard],
       data: {roles:[{id:1,name:role.SUPER_ADMINISTRATOR.value}]}
     },
-    { path: 'fichiers',       component: TypographyComponent,
+    { path: 'fichiers',       component: FileComponent,
       canActivate: [AuthGuard],
       data: {roles:[{id:2,name:role.ADMINISTRATOR.value}]}
     },

@@ -1,0 +1,47 @@
+.line-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.line-container .first,
+.line-container .second,
+.line-container .third{
+    margin-right: 10px;
+}
+
+.line-container h3{
+    margin-bottom: 2px;
+}
+
+.line-container .first{
+    width: 15%;
+}
+
+.line-container .second{
+    width: 10%;
+}
+
+.line-container .third{
+    width: 65%;
+}
+
+.line-container .fourth{
+    width: 5%;
+}
+
+.line-container .first input,
+.line-container .second input,
+.line-container .third input,
+.line-container .fourth input {
+    width: 100%;
+}
+
+.line-container input{
+    padding: 8px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}

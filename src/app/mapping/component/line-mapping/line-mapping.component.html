@@ -1,0 +1,17 @@
+<div class="line-container" *ngFor="let a of array; index as i">
+    <div class="first">
+        <h3>Nom</h3>
+        <input type="text" (change)="onNameChange($event,i)" value="">
+    </div>
+    <div class="second">
+        <h3>Séparateur</h3>
+        <input type="text" (change)="onModelChange($event,i)" value="">
+    </div>
+    <div class="third">
+        <h3>Champs</h3>
+        <input type="text" (change)="onValuesChange($event,i)" value="{{array[i]}}">
+    </div>
+    <div class="fourth">
+        <i (click)="delete(i)" style="color: #D72323; cursor: pointer; font-size: 20px;" class="fa fa-trash-o" aria-hidden="true"></i>
+    </div>
+</div>

@@ -2,9 +2,8 @@ import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { buttonType, GlobalConstant, role, userStatus } from 'app/common/global-constant';
 import { FullUser } from 'app/model/full-user';
-import { ShareDataService } from 'app/service/share-data.service';
-import { UserService } from 'app/service/user.service';
-import { data } from 'jquery';
+import { ShareDataService } from 'app/service/user/share-data.service';
+import { UserService } from 'app/service/user/user.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subject, Subscription } from 'rxjs';
 

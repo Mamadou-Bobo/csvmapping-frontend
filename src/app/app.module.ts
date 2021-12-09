@@ -22,15 +22,16 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AuthGuard } from "./auth/auth.guard";
 import { AuthInterceptor } from "./auth/auth-interceptor";
-import { UserService } from "./service/user.service";
-import { DeleteModalComponent } from './modal/delete-modal/delete-modal.component';
 import { UpdatePasswordComponent } from './user/update-password/update-password.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ChangePasswordComponent } from './user/change-password/change-password.component';
 import { ResetDefaultPasswordComponent } from './user/reset-default-password/reset-default-password.component';
-import { CubeLoadingComponent } from "./cube-loading/cube-loading.component";
+import { ImportComponent } from './mapping/import/import.component';
+import { UserService } from "./service/user/user.service";
+import {MatInputModule} from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -38,14 +39,14 @@ import { CubeLoadingComponent } from "./cube-loading/cube-loading.component";
     AdminLayoutComponent,
     LoginComponent,
     ForbiddenComponent,
-    DeleteModalComponent,
     UpdatePasswordComponent,
     ChangePasswordComponent,
     ResetDefaultPasswordComponent,
-    CubeLoadingComponent    
+    ImportComponent    
 ],
   imports: [
     BrowserAnimationsModule,
+    MatInputModule,
     RouterModule.forRoot(AppRoutes,{
       useHash: true
     }),

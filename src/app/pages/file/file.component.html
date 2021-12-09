@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          
+          <div class="button">
+            <div class="right-button">
+              <!-- <button>Supprimer</button> -->
+              <button type="button"  (click)="openDialog()">Mapper</button>
+            </div>
+          </div>
+                    
+        </div>
+        <div class="card-body">
+          <div class="table-responsive" style="overflow: hidden;">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                  <input type="checkbox">
+                </th>
+                <th style="text-align: center;">
+                  Nom du fichier
+                </th>
+                <th style="text-align: center;">
+                  Date d'ajout
+                </th>
+                <th style="text-align: center;">
+                  Mappage
+                </th>
+                <th style="text-align: center;">
+                  Statut
+                </th>
+              </thead>
+              <tbody>
+                <!-- <div class="not-found">
+                  <tr><h1>Aucun Résultat</h1></tr>
+                </div> -->
+                <tr *ngFor="let file of fileList; index as i">
+                  <!-- <td>
+                    <input type="checkbox" style="margin-left: 5px;">
+                  </td> -->
+                  <td style="text-align: center;">
+                    {{file.filename}}
+                  </td>
+                  <td style="text-align: center;">
+                    {{file.addedAt}}
+                  </td>
+                  <td style="text-align: center;">
+                    {{file.isMapped}}
+                  </td>
+                  <td style="text-align: center;">
+                    {{file.isValidate}}
+                  </td>
+                  <!-- <td>
+                    <i style="color: #D72323; cursor: pointer; font-size: 20px;" class="fa fa-trash-o" aria-hidden="true"></i>
+                  </td> -->
+                  <!-- <td>
+                    <i style="color: #2199E7; cursor: pointer; font-size: 20px;" class="fa fa-pencil" aria-hidden="true"></i>
+                  </td> -->
+              </tr>
+              </tbody>
+            </table>       
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

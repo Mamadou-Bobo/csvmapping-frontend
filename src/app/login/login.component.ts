@@ -3,9 +3,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GlobalConstant, role } from 'app/common/global-constant';
 import { FullUser } from 'app/model/full-user';
-import { ShareDataService } from 'app/service/share-data.service';
-import { UserAuthService } from 'app/service/user-auth.service';
-import { UserService } from 'app/service/user.service';
+import { ShareDataService } from 'app/service/user/share-data.service';
+import { UserAuthService } from 'app/service/user/user-auth.service';
+import { UserService } from 'app/service/user/user.service';
 
 @Component({
   selector: 'app-login',

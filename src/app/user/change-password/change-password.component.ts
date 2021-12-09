@@ -3,8 +3,7 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GlobalConstant } from 'app/common/global-constant';
 import { FullUser } from 'app/model/full-user';
-import { UserAuthService } from 'app/service/user-auth.service';
-import { UserService } from 'app/service/user.service';
+import { UserService } from 'app/service/user/user.service';
 import { interval, Subscription } from 'rxjs';
 
 @Component({

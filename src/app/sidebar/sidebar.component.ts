@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserAuthService } from 'app/service/user-auth.service';
+import { UserAuthService } from 'app/service/user/user-auth.service';
 
 export interface RouteInfo {
     path: string;

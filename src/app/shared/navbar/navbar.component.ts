@@ -2,10 +2,8 @@ import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/co
 import { ROUTES } from '../../sidebar/sidebar.component';
 import { Router } from '@angular/router';
 import { Location} from '@angular/common';
-import { UserAuthService } from 'app/service/user-auth.service';
-import { ShareDataService } from 'app/service/share-data.service';
-import { FullUser } from 'app/model/full-user';
-import { UserService } from 'app/service/user.service';
+import { ShareDataService } from 'app/service/user/share-data.service';
+import { UserAuthService } from 'app/service/user/user-auth.service';
 
 @Component({
     moduleId: module.id,

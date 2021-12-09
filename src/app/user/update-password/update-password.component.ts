@@ -3,9 +3,7 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GlobalConstant, role } from 'app/common/global-constant';
 import { FullUser } from 'app/model/full-user';
-import { User } from 'app/model/user';
-import { UserAuthService } from 'app/service/user-auth.service';
-import { UserService } from 'app/service/user.service';
+import { UserService } from 'app/service/user/user.service';
 
 @Component({
   selector: 'app-update-password',
