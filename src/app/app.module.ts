@@ -42,7 +42,7 @@ import {MatInputModule} from '@angular/material/input';
     UpdatePasswordComponent,
     ChangePasswordComponent,
     ResetDefaultPasswordComponent,
-    ImportComponent    
+    ImportComponent 
 ],
   imports: [
     BrowserAnimationsModule,

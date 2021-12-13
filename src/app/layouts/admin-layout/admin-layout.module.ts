@@ -32,6 +32,8 @@ import { LineMappingComponent } from 'app/mapping/component/line-mapping/line-ma
 import {MatDialogModule} from '@angular/material/dialog';
 import { ModalComponent } from 'app/modal/modal.component';
 import { CubeLoadingComponent } from 'app/cube-loading/cube-loading.component';
+import { ListMappingComponent } from 'app/pages/list-mapping/list-mapping.component';
+import { ValidationModalComponent } from 'app/validation-modal/validation-modal.component';
 
 
 @NgModule({
@@ -67,7 +69,9 @@ import { CubeLoadingComponent } from 'app/cube-loading/cube-loading.component';
     DndDirective,
     ProgressComponent,
     LineMappingComponent,
-    CubeLoadingComponent
+    CubeLoadingComponent,
+    ListMappingComponent,
+    ValidationModalComponent
   ]
 })
 

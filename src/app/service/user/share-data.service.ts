@@ -16,6 +16,10 @@ export class ShareDataService {
   separatorArray: string[] = [];
   headerlength: number = 0;
   exitType: string = '';
+  filename: string = '';
+  mappingData: string[] = [];
+  fileValidationObject: Object;
+  validationStatus: boolean;
 
   alertMessageSubject = new Subject<string>();
   isClickedSubject = new Subject<boolean>();
@@ -27,6 +31,10 @@ export class ShareDataService {
   columnsMappingSubject = new Subject<string[]>();
   headerLengthSubject = new Subject<number>();
   exitTypeSubject = new Subject<string>();
+  mappingDataSubject = new Subject<string[]>();
+  filenameSubject = new Subject<string>();
+  fileValidationSubject = new Subject<Object>();
+  validationStatusSubject = new Subject<Object>();
 
   emitAlertMessage() {
     this.alertMessageSubject.next(this.alertMessage);
@@ -67,6 +75,23 @@ export class ShareDataService {
 
   emitExitType() {
     this.exitTypeSubject.next(this.exitType);
+  }
+
+  emitMappingData() {
+    this.mappingDataSubject.next(this.mappingData);
+  }
+
+  emitFileName() {
+    this.filenameSubject.next(this.filename);
+  }
+
+  emitFileValidationObject() {
+    this.fileValidationSubject.next(this.fileValidationObject);
+  }
+
+  emitValidationStatus() {
+    this.validationStatus = !this.validationStatus;
+    this.validationStatusSubject.next(this.validationStatus);
   }
 
 }

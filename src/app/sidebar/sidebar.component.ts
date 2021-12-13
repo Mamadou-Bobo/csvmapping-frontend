@@ -11,9 +11,10 @@ export interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Tableau de bord', icon:'nc-icon nc-layout-11', userRole: ['SUPER_ADMINISTRATOR','ADMINISTRATOR','VALIDATOR'],   class: '',  },
+    // { path: '/dashboard', title: 'Tableau de bord', icon:'nc-icon nc-layout-11', userRole: ['SUPER_ADMINISTRATOR','ADMINISTRATOR','VALIDATOR'],   class: '',  },
     { path: '/users',     title: 'Utilisateurs',    icon:'fa fa-users',          userRole: ['SUPER_ADMINISTRATOR'],            class: '' },
-    { path: '/fichiers',     title: 'Fichiers',        icon: 'fa fa-files-o',       userRole: ['ADMINISTRATOR'],  class: ''}
+    { path: '/fichiers',     title: 'Fichiers',        icon: 'fa fa-files-o',       userRole: ['ADMINISTRATOR'],  class: ''},
+    { path: '/mapping',   title: 'Mapping', icon: 'fa fa-file-code-o', userRole: ['ADMINISTRATOR','VALIDATOR'],  class: ''}
 ];
 
 @Component({

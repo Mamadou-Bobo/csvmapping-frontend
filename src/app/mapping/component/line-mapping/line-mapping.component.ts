@@ -96,8 +96,11 @@ export class LineMappingComponent implements OnInit, OnDestroy {
       name += "";
     }
 
-    this.outPutHeaderArray.splice(index,1,name);
+    if(this.lineSeparator === "") {
+      name += " ";
+    }
 
+    this.outPutHeaderArray.splice(index,1,name);
 
     console.log(this.outPutHeaderArray);
 

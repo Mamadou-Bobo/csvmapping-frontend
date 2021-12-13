@@ -120,7 +120,6 @@ export class ModalComponent implements OnInit, OnDestroy {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
-  fourthFormGroup: FormGroup;
 
   isEditable = false;
 
@@ -152,6 +151,10 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   columnSeparator: string = "";
 
+  dataTypesArray: string[] = [];
+  lengthArray: number[] = [];
+  mandatoryResult: string[] = [];
+
   numberOfLines: number = 0;
 
   isNextButtonDisabled: boolean = true;
@@ -173,17 +176,15 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      firstCtrl: ['']
     });
     this.secondFormGroup = this._formBuilder.group({
       newFileName: ['', Validators.required],
-      separator: ['', Validators.required]
-    });
-    this.thirdFormGroup = this._formBuilder.group({
+      separator: ['', Validators.required],
       exitType: ['', Validators.required]
     });
-    this.fourthFormGroup = this._formBuilder.group({
-
+    this.thirdFormGroup = this._formBuilder.group({
+      thirdCtrl: ['']
     });
     
     this.outPutHeaderArraySubscription = this.shareDataService.outPutHeaderArraySubject.subscribe(data => {
@@ -199,28 +200,72 @@ export class ModalComponent implements OnInit, OnDestroy {
     }, error => console.log(error));
   }
 
-  getData() {
+  uploadFile() {
+    this.secondFormGroup.setValue({
+      newFileName: this.secondFormGroup.get("newFileName").value + ".csv",
+      separator: this.secondFormGroup.get("separator").value,
+      exitType: this.secondFormGroup.get("exitType").value
+    });
+    
+    const formData = new FormData();
+    
+    let object = { 
+      newFileName: this.secondFormGroup.get("newFileName").value, 
+      separator: this.secondFormGroup.get("separator").value,
+      fileExitType: this.secondFormGroup.get('exitType').value,
+      filename: this.files[0].name
+    }
+  
+    formData.append("file", this.files[0]);
+    formData.append("config", JSON.stringify(object));
+
     if(this.headerArray !== undefined && this.headerArray.length > 0) {
       this.headerArray.splice(0,this.headerArray.length);
     }
-    this.display = true;
-    let separator = this.secondFormGroup.get("separator").value;
-    console.log(separator);
-    console.log(this.files[0].name);
-    this.fileService.getDataStructure(separator,this.files[0].name).subscribe((data: any) => { 
-      data.header.forEach(element => {
-        const header = {libelle: element}
-        this.headerArray.push(header);
-      });
 
-      this.display = false;
-    },
-    error => console.log(error));
+    this.display = true;
+
+    this.fileService.uploadFile(formData).subscribe(
+      (data: any) => {
+        console.log(data);
+        this.dataTypesArray.push(data.type);
+        this.lengthArray.push(data.length);
+        this.mandatoryResult.push(data.mandatory);
+        data.header.forEach(element => {
+          const header = {libelle: element}
+          this.headerArray.push(header);
+        });
+  
+        this.display = false;
+      },
+      (error) => {
+        console.log(error);
+      } 
+    );
 
   }
 
+  // getData() {
+  //   if(this.headerArray !== undefined && this.headerArray.length > 0) {
+  //     this.headerArray.splice(0,this.headerArray.length);
+  //   }
+  //   this.display = true;
+  //   let separator = this.secondFormGroup.get("separator").value;
+  //   console.log(separator);
+  //   console.log(this.files[0].name);
+  //   this.fileService.getDataStructure(separator,this.files[0].name).subscribe((data: any) => { 
+  //     data.header.forEach(element => {
+  //       const header = {libelle: element}
+  //       this.headerArray.push(header);
+  //     });
+
+  //     this.display = false;
+  //   },
+  //   error => console.log(error));
+  // }
+
   emitExitType() {
-    this.shareDataService.exitType = this.thirdFormGroup.get('exitType').value;
+    this.shareDataService.exitType = this.secondFormGroup.get('exitType').value;
     this.shareDataService.emitExitType();
   }
 
@@ -288,16 +333,17 @@ export class ModalComponent implements OnInit, OnDestroy {
         alert("Veuillez renseigner tous les champs");
       } else {
         this.close = true;
-        if(this.secondFormGroup.get('newFileName').value !== "" && 
-           this.thirdFormGroup.get('exitType').value !== "" && 
+        if(this.files[0].name !== "" && 
+           this.secondFormGroup.get('exitType').value !== "" && 
            this.secondFormGroup.get('separator').value !== "" && 
-           this.thirdFormGroup.get("exitType").value === 'colonne') {
+           this.secondFormGroup.get("exitType").value === 'colonne') {
 
             // concaténation avec le séparateur pour former une chaîne de caractère
             this.outPutHeader = this.outPutHeaderArray.join(this.columnSeparator);
              
-            let object = {filename: this.secondFormGroup.get('newFileName').value, 
-                          exitType: this.thirdFormGroup.get('exitType').value,
+            let object = {filename: this.files[0].name, 
+                          newFileName: this.secondFormGroup.get('newFileName').value,
+                          exitType: this.secondFormGroup.get('exitType').value,
                           separator: this.secondFormGroup.get('separator').value,
                           dataComposition: this.columnsMapping,
                           outPutHeader: this.outPutHeader};
@@ -309,18 +355,21 @@ export class ModalComponent implements OnInit, OnDestroy {
             }, error => console.log(error));
 
             console.log(this.file);
-           } else if(this.secondFormGroup.get('newFileName').value !== "" &&  
-                     this.thirdFormGroup.get('exitType').value !== "" && 
+           } else if(this.files[0].name !== "" &&  
+                     this.secondFormGroup.get('exitType').value !== "" && 
                      this.secondFormGroup.get('separator').value !== "" && 
-                     this.thirdFormGroup.get("exitType").value === 'ligne') {
+                     this.secondFormGroup.get("exitType").value === 'ligne') {
 
-                      let object = {filename: this.secondFormGroup.get('newFileName').value, 
-                        exitType: this.thirdFormGroup.get('exitType').value,
+                      let object = {filename: this.files[0].name, 
+                        newFileName: this.secondFormGroup.get('newFileName').value,
+                        exitType: this.secondFormGroup.get('exitType').value,
                         separator: this.secondFormGroup.get('separator').value,
                         dataComposition: this.columnsMapping,
                         header: this.outPutHeaderArray};
 
                         this.file = object;
+
+                        console.log(this.file);
 
                         this.fileService.generateFileLineOutput(this.file).subscribe(data => {
                           console.log(data);
@@ -437,25 +486,6 @@ export class ModalComponent implements OnInit, OnDestroy {
     }
   }
 
-  uploadFile() {
-    this.secondFormGroup.setValue({
-      newFileName: this.secondFormGroup.get("newFileName").value + ".csv",
-      separator: this.secondFormGroup.get("separator").value 
-    });
-    
-    const formData = new FormData();
-    this.config = this.secondFormGroup.value;    
-
-    formData.append("file", this.files[0]);
-    formData.append("config", JSON.stringify(this.config));
-
-    this.fileService.uploadFile(formData).subscribe(
-      (error) => {
-        // console.log(error);
-      } 
-    );
-  }
-
   /**
    * format bytes
    * @param bytes (File size in bytes)
@@ -471,4 +501,8 @@ export class ModalComponent implements OnInit, OnDestroy {
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   }
+
+  test() {
+  }
+
 }

@@ -22,8 +22,7 @@ export class FileComponent implements OnInit, OnDestroy {
   fileListSubscription: Subscription;
   
   constructor(private fileService: FileService,
-              public dialog: MatDialog,
-              private shareDataService: ShareDataService) {
+              public dialog: MatDialog) {
               }
 
   ngOnDestroy(): void {
@@ -46,10 +45,5 @@ export class FileComponent implements OnInit, OnDestroy {
       error => console.log(error)
     ); 
   }
-
-  // openModal(template: TemplateRef<any>) {
-  //   this.modalRef = this.modalService.show(template,Object.assign({}, { class: 'gray modal-lg' }));
-  // }
-
 
 }

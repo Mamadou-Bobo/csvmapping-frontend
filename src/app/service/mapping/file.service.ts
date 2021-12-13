@@ -56,4 +56,24 @@ export class FileService {
     return this.httpClient.post<File>(this.baseUrl + "/file/generate/line", file);
   }
 
+  public getMappedFiles(): Observable<Object> {
+    return this.httpClient.get(this.baseUrl + "/file/mapped");
+  }
+
+  public getMappedDataFromFile(fileName: string, exitType: string): Observable<Object> {
+    return this.httpClient.get(this.baseUrl + "/file/mapped/" + fileName + "/" + exitType);
+  }
+
+  public updateValidationStatus(file: Object): Observable<Object> {
+    return this.httpClient.put(this.baseUrl + "/file/mapping/validation", file);
+  }
+
+  public deleteFileFromDiskAfterValidation(filename: string): Observable<Object> {
+    return this.httpClient.delete(this.baseUrl + "/file/mapping/delete/" + filename);
+  }
+
+  public downloadFile(filename: string, exitType: string): Observable<Object> {
+    return this.httpClient.get(this.baseUrl + "/file/mapping/download/" + filename + "/" + exitType, {responseType: 'blob'});
+  }
+
 }

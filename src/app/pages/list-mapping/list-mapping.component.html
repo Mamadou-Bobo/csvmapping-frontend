@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-body">
+                    <div class="table-responsive" style="overflow: hidden;">
+                        <table class="table">
+                            <thead class=" text-primary">
+                            <th style="text-align: center;">
+                                Nom du fichier
+                            </th>
+                            <th style="text-align: center;">
+                                Type
+                            </th>
+                            <th style="text-align: center;">
+                                Date d'ajout
+                            </th>
+                            <th style="text-align: center;">
+                                Statut
+                            </th>
+                            <th style="text-align: center;">
+                                Prévisualisation
+                            </th>
+                            <th style="text-align: center;">
+                                Exportation
+                            </th>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let file of fileList; index as i">
+                                <td style="text-align: center;">
+                                {{file.newFileName}}
+                                </td>
+                                <td style="text-align: center;">
+                                {{file.fileExitType}}
+                                </td>
+                                <td style="text-align: center;">
+                                {{file.addedAt}}
+                                </td>
+                                <td style="text-align: center;">
+                                {{file.isValidate}}
+                                </td>
+                                <td style="text-align: center; cursor: pointer;">
+                                    <i (click)="openDialog()" (click)="retriewMappingData(file.newFileName, file.fileExitType, file.id, i)" class="fa fa-eye" aria-hidden="true"></i>
+                                </td>
+                                <td style="text-align: center; cursor: pointer;">
+                                    <i class="fa fa-download" (click)="download(file.newFileName, file.fileExitType)" aria-hidden="true"></i>
+                                </td>    
+                            </tr>
+                            </tbody>
+                        </table>       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>         

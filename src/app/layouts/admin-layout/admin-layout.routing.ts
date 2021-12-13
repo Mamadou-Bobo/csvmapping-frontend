@@ -9,6 +9,7 @@ import { NotificationsComponent } from '../../pages/notifications/notifications.
 import { AuthGuard } from 'app/auth/auth.guard';
 import { role } from 'app/common/global-constant';
 import { FileComponent } from 'app/pages/file/file.component';
+import { ListMappingComponent } from 'app/pages/list-mapping/list-mapping.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -22,7 +23,11 @@ export const AdminLayoutRoutes: Routes = [
       canActivate: [AuthGuard],
       data: {roles:[{id:2,name:role.ADMINISTRATOR.value}]}
     },
-    { path: 'typography',     component: TypographyComponent },
+    { path: 'mapping',     
+      component: ListMappingComponent,
+      canActivate: [AuthGuard],
+      data: {roles: [{id:2,name:role.ADMINISTRATOR.value},{id:3,name:role.VALIDATOR.value}]}
+    },
     { path: 'icons',          component: IconsComponent },
     { path: 'notifications',  component: NotificationsComponent }
 ];

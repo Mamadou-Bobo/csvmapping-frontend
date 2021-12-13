@@ -55,7 +55,9 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['users']);
             } else if(userRole === role.ADMINISTRATOR.value) {
               this.router.navigate(['fichiers']);
-            }  
+            } else if(userRole === role.VALIDATOR.value) {
+              this.router.navigate(['mapping']);
+            }
           }
         },
         error => console.log(error)

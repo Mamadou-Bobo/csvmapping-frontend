@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Prévisualisation de {{filename}}</h2>
+<mat-dialog-content class="mat-typography">
+    <p *ngFor="let data of mappingData">
+        {{data}}
+    </p>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <div class="button">
+        <div class="left">
+            <button mat-button mat-dialog-close>Fermer</button>
+        </div>
+        <div class="right" *ngIf="isValidator">
+            <button mat-button [mat-dialog-close]="true" (click)="invalidateFile()">Invalider</button>
+            <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="validateFile()">Valider</button>
+        </div>
+    </div>
+</mat-dialog-actions>

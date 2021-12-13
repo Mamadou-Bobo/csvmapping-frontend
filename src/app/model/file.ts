@@ -9,4 +9,5 @@ export class File {
     separator!: string;
     dataComposition!: string[];
     outPutHeader!: string;
+    fileExitType!: string;
 }

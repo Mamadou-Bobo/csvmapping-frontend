@@ -65,22 +65,31 @@
             <div mat-dialog-actions style="float: right;">
                 <button id="basic" style="float: right;" type="button" mat-button mat-dialog-close>Quitter</button>
                 <div style="float: right;">
-                    <button mat-raised-button [disabled]="isNextButtonDisabled" color="primary" matStepperNext>Suivant</button>
+                    <button mat-raised-button (click)="test()" [disabled]="isNextButtonDisabled" color="primary" matStepperNext>Suivant</button>
                 </div>
             </div>               
           </form>
         </mat-step>
         <mat-step [stepControl]="secondFormGroup">
           <form [formGroup]="secondFormGroup">
-            <ng-template matStepLabel>Configuration 1</ng-template>
+            <ng-template matStepLabel>Configuration </ng-template>
 
             <div class="top">
               <mat-form-field class="example-full-width">
                 <input matInput formControlName="newFileName" placeholder="Nom du fichier de sortie" value="">
               </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Type de sortie</mat-label>
+                <mat-select formControlName="exitType" name="type" >
+                  <mat-option (click)="emitExitType()" *ngFor="let type of exitType" [value]="type.value">
+                    {{type.value}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
     
               <mat-form-field class="example-full-width">
-                <input matInput minlength="1" maxlength="2" formControlName="separator" placeholder="Séparateur" value="">
+                <input matInput minlength="1" maxlength="2" formControlName="separator" placeholder="Séparateur du fichier" value="">
               </mat-form-field>
             </div>
 
@@ -88,34 +97,10 @@
               <button mat-stroked-button matStepperPrevious>Précédent</button>
               <button mat-raised-button (click)="uploadFile()" color="primary" matStepperNext>Suivant</button>
             </div>
-
           </form>
         </mat-step>
         <mat-step [stepControl]="thirdFormGroup">
           <form [formGroup]="thirdFormGroup">
-            <ng-template matStepLabel>Configuration 2</ng-template>
-
-            <div class="top">
-              <!-- <form> -->
-                <mat-form-field appearance="fill">
-                  <mat-label>Type de sortie</mat-label>
-                  <mat-select formControlName="exitType" name="type" >
-                    <mat-option (click)="emitExitType()" *ngFor="let type of exitType" [value]="type.value">
-                      {{type.value}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-            </div>
-
-            <div class="bottom-button" style="margin-top: 15%;">
-              <button mat-stroked-button matStepperPrevious>Précédent</button>
-              <button mat-raised-button (click)="getData()" color="primary" matStepperNext>Suivant</button>
-            </div>
-
-          </form>
-        </mat-step>
-        <mat-step [stepControl]="fourthFormGroup">
-          <form [formGroup]="fourthFormGroup">
             <ng-template matStepLabel>Structuration des données</ng-template>
             <!-- <div class="alertMessage">
               <h3 style="text-align: center;">Message</h3>
@@ -124,29 +109,31 @@
               <tr>
                 <th style="text-align: center;">Entête</th>
                 <th style="text-align: center;">Type</th>
-                <th style="text-align: center;">Format</th>
+                <!-- <th style="text-align: center;">Format</th> -->
                 <th style="text-align: center;">Taille</th>
                 <th style="text-align: center;">Champ obligatoire</th>
               </tr>
               <tr *ngFor="let element of headerArray; index as i">
                 <td>{{element.libelle}}</td>
-                <td>               
-                  <select [(ngModel)]="selectedValue" name="type" [ngModelOptions]="{standalone: true}">
-                    <option (click)="setTypeArray(type.value,i)" [disabled]="type.value === '' ? true : false" [value]="selected ? type.value : ''" *ngFor="let type of dataType; index as i">{{type.viewValue}}</option>
-                  </select>
+                <td style="text-align: center;">               
+                  <!-- <select  name="type">
+                    <option (click)="setTypeArray(type.value,i)" [value]="5" *ngFor="let type of dataType; index as i">{{type.viewValue}}</option>
+                  </select> -->
+                  <input [disabled]="true" style="text-align: center;" type="text" value="{{dataTypesArray[0][i]}}">
                 </td>
-                <td>
+                <!-- <td>
                   <select [(ngModel)]="selectedFormatValue" [ngModelOptions]="{standalone: true}">
                     <option (click)="setFormatArray(format.value,i)" [disabled]="format.value === '' ? true : false" [value]="selected ? format.value : ''" *ngFor="let format of formats; index as i">{{format.viewValue}}</option>
                   </select>
+                </td> -->
+                <td style="text-align: center;" class="example-full-width">
+                  <input [disabled]="true" style="text-align: center;" type="number" value="{{lengthArray[0][i]}}">
                 </td>
-                <td class="example-full-width">
-                  <input type="number">
-                </td>
-                <td>
-                  <select [(ngModel)]="mandatorySelectedValue" [ngModelOptions]="{standalone: true}">
+                <td style="text-align: center;">
+                  <!-- <select [(ngModel)]="mandatorySelectedValue" [ngModelOptions]="{standalone: true}">
                     <option (click)="setMandatoryArray(m.value,i)" [disabled]="m.value === '' ? true : false" [value]="selected ? m.value : ''" *ngFor="let m of mandatory; index as i">{{m.viewValue}}</option>
-                  </select>
+                  </select> -->
+                  <input [disabled]="true" style="text-align: center;" type="text" value="{{mandatoryResult[0][i]}}">
                 </td>
               </tr>
             </table>
